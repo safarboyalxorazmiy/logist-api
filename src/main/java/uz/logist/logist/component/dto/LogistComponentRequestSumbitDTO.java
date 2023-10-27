@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ComponentSumbitDTO {
+public class LogistComponentRequestSumbitDTO {
     private Long componentId, logistId;
     private Double quantity;
 }

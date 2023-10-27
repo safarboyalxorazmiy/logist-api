@@ -2,17 +2,13 @@ package uz.logist.logist.component;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import uz.logist.logist.component.dto.ComponentInfoDTO;
-import uz.logist.logist.component.dto.ComponentSumbitDTO;
+import org.springframework.web.bind.annotation.*;
+import uz.logist.logist.component.dto.LogistComponentInfoDTO;
+import uz.logist.logist.component.dto.LogistComponentRequestSumbitDTO;
 import uz.logist.user.User;
 
 import java.util.List;
@@ -25,14 +21,20 @@ public class LogistComponentController {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/component/submit")
-    public ResponseEntity<Boolean> submitComponent(@RequestBody ComponentSumbitDTO dto) {
+    public ResponseEntity<Boolean> submitComponentRequest(@RequestBody LogistComponentRequestSumbitDTO dto) {
         Boolean result = logistComponentService.submitComponent(dto);
         return ResponseEntity.ok(result);
     }
 
     @GetMapping("/component/not/verified")
-    public ResponseEntity<List<ComponentInfoDTO>> getNotVerifiedComponents() {
-        List<ComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents();
+    public ResponseEntity<List<LogistComponentInfoDTO>> getNotVerifiedRequests() {
+        List<LogistComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents();
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/component/verify")
+    public ResponseEntity<Boolean> verifyRequest(@RequestParam Long requestId) {
+        Boolean result = logistComponentService.verifyRequest(requestId);
         return ResponseEntity.ok(result);
     }
 

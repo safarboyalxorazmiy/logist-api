@@ -6,11 +6,13 @@ import lombok.Setter;
 import uz.logist.components.ComponentsEntity;
 import uz.logist.user.User;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "logist_component")
-public class LogistComponentEntity {
+@Table(name = "logist_component_request")
+public class LogistComponentRequestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +24,9 @@ public class LogistComponentEntity {
     @JoinColumn(name = "component_id", insertable = false, updatable = false)
     private ComponentsEntity component;
 
+    @Column
+    private Double quantity;
+
     @Column(name = "logist_id")
     private Long logistId;
 
@@ -30,5 +35,8 @@ public class LogistComponentEntity {
     private User logist;
 
     @Column
-    private Double quantity;
+    private Boolean verified;
+
+    @Column
+    private LocalDateTime createdDate = LocalDateTime.now();
 }
