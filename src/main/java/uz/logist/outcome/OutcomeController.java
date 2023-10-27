@@ -14,7 +14,6 @@ import java.util.List;
 public class OutcomeController {
     private final OutcomeService outcomeService;
 
-
     @PreAuthorize("permitAll()")
     @GetMapping("/get")
     public List<OutcomeEntity> getLast() {
