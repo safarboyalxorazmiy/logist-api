@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Permission {
 
-    ;
+  ;
 
-    @Getter
-    private final String permission;
+  @Getter
+  private final String permission;
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface OutcomeRepository extends JpaRepository<OutcomeEntity, Long> {
-    List<OutcomeEntity> findByCommentIsNull();
+  List<OutcomeEntity> findByCommentIsNull();
 }

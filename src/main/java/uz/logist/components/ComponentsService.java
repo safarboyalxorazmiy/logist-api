@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ComponentsService {
-    private final ComponentsRepository componentsRepository;
+  private final ComponentsRepository componentsRepository;
 
-    public List<ComponentsEntity> getAll() {
-        return componentsRepository.findAll();
-    }
+  public List<ComponentsEntity> getAll() {
+    return componentsRepository.findAll();
+  }
 }

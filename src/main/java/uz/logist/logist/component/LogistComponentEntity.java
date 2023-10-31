@@ -11,24 +11,24 @@ import uz.logist.user.User;
 @Entity
 @Table(name = "logist_component")
 public class LogistComponentEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "component_id")
-    private Long componentId;
+  @Column(name = "component_id")
+  private Long componentId;
 
-    @ManyToOne
-    @JoinColumn(name = "component_id", insertable = false, updatable = false)
-    private ComponentsEntity component;
+  @ManyToOne
+  @JoinColumn(name = "component_id", insertable = false, updatable = false)
+  private ComponentsEntity component;
 
-    @Column(name = "logist_id")
-    private Long logistId;
+  @Column(name = "logist_id")
+  private Long logistId;
 
-    @ManyToOne
-    @JoinColumn(name = "logist_id", insertable = false, updatable = false)
-    private User logist;
+  @ManyToOne
+  @JoinColumn(name = "logist_id", insertable = false, updatable = false)
+  private User logist;
 
-    @Column
-    private Double quantity;
+  @Column
+  private Double quantity;
 }

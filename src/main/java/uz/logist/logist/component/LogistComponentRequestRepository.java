@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface LogistComponentRequestRepository extends JpaRepository<LogistComponentRequestEntity, Long> {
-    List<LogistComponentRequestEntity> findByVerifiedFalse();
+  List<LogistComponentRequestEntity> findByVerifiedFalse();
 }

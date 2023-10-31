@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import uz.logist.logist.component.dto.LogistComponentInfoDTO;
 import uz.logist.logist.component.dto.LogistComponentRequestSumbitDTO;
+import uz.logist.logist.component.dto.LogistInfoDTO;
 import uz.logist.user.User;
 
 import java.util.List;
@@ -17,32 +18,37 @@ import java.util.List;
 @RequestMapping("/logist")
 @RequiredArgsConstructor
 public class LogistComponentController {
-    private final LogistComponentService logistComponentService;
+  private final LogistComponentService logistComponentService;
 
-    @PreAuthorize("permitAll()")
-    @PostMapping("/component/submit")
-    public ResponseEntity<Boolean> submitComponentRequest(@RequestBody LogistComponentRequestSumbitDTO dto) {
-        Boolean result = logistComponentService.submitComponent(dto);
-        return ResponseEntity.ok(result);
-    }
+  @PreAuthorize("permitAll()")
+  @PostMapping("/component/submit")
+  public ResponseEntity<Boolean> submitComponentRequest(@RequestBody LogistComponentRequestSumbitDTO dto) {
+    Boolean result = logistComponentService.submitComponent(dto);
+    return ResponseEntity.ok(result);
+  }
 
-    @GetMapping("/component/not/verified")
-    public ResponseEntity<List<LogistComponentInfoDTO>> getNotVerifiedRequests() {
-        List<LogistComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents();
-        return ResponseEntity.ok(result);
-    }
+  @GetMapping("/component/not/verified")
+  public ResponseEntity<List<LogistComponentInfoDTO>> getNotVerifiedRequests() {
+    List<LogistComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents();
+    return ResponseEntity.ok(result);
+  }
 
-    @PutMapping("/component/verify")
-    public ResponseEntity<Boolean> verifyRequest(@RequestParam Long requestId) {
-        Boolean result = logistComponentService.verifyRequest(requestId);
-        return ResponseEntity.ok(result);
-    }
+  @PutMapping("/component/verify")
+  public ResponseEntity<Boolean> verifyRequest(@RequestParam Long requestId) {
+    Boolean result = logistComponentService.verifyRequest(requestId);
+    return ResponseEntity.ok(result);
+  }
 
-    private Long getLogistId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+  @GetMapping("/get/info")
+  public ResponseEntity<List<LogistInfoDTO>> getAllLogists() {
+    List<LogistInfoDTO> result = logistComponentService.getAllLogistsInfo();
+    return ResponseEntity.ok(result);
+  }
 
-        return user.getId();
-    }
+  private Long getLogistId() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    User user = (User) authentication.getPrincipal();
 
+    return user.getId();
+  }
 }

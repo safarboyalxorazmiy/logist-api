@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OutcomeService {
-    private final OutcomeRepository outcomeRepository;
+  private final OutcomeRepository outcomeRepository;
 
-    public List<OutcomeEntity> getLast() {
-        return null;
-     }
+  public List<OutcomeEntity> getLast() {
+    return null;
+  }
 }

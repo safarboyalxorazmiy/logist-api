@@ -12,11 +12,11 @@ import java.util.List;
 @RequestMapping("/components")
 @RequiredArgsConstructor
 public class ComponentsController {
-    private final ComponentsService componentsService;
+  private final ComponentsService componentsService;
 
-    @PreAuthorize("permitAll()")
-    @GetMapping("/get/all")
-    public List<ComponentsEntity> getAll() {
-        return componentsService.getAll();
-    }
+  @PreAuthorize("permitAll()")
+  @GetMapping("/get/all")
+  public List<ComponentsEntity> getAll() {
+    return componentsService.getAll();
+  }
 }

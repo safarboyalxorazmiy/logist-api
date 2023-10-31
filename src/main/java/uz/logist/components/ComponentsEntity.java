@@ -11,46 +11,46 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "components")
 public class ComponentsEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column
-    private String code;
+  @Column
+  private String code;
 
-    @Column
-    private String name;
+  @Column
+  private String name;
 
-    @Column
-    private Long checkpoint;
+  @Column
+  private Long checkpoint;
 
-    @Column
-    private String unit;
+  @Column
+  private String unit;
 
-    @Column
-    private String specs;
+  @Column
+  private String specs;
 
-    @Column
-    private Integer status;
+  @Column
+  private Integer status;
 
-    @Column
-    private String photo;
+  @Column
+  private String photo;
 
-    @Column
-    private LocalDateTime time;
+  @Column
+  private LocalDateTime time;
 
-    @Column
-    private Integer type;
+  @Column
+  private Integer type;
 
-    @Column
-    private Double weight;
+  @Column
+  private Double weight;
 
-    @Column
-    private Long available;
+  @Column
+  private Long available;
 
-    @Column
-    private String inner_code;
+  @Column
+  private String inner_code;
 
-    @Column
-    private Integer income;
+  @Column
+  private Integer income;
 }

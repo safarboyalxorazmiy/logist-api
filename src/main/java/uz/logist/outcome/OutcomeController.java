@@ -12,12 +12,12 @@ import java.util.List;
 @RequestMapping("/outcome")
 @RequiredArgsConstructor
 public class OutcomeController {
-    private final OutcomeService outcomeService;
+  private final OutcomeService outcomeService;
 
-    @PreAuthorize("permitAll()")
-    @GetMapping("/get")
-    public List<OutcomeEntity> getLast() {
-        System.out.println(outcomeService.getLast());
-        return outcomeService.getLast();
-    }
+  @PreAuthorize("permitAll()")
+  @GetMapping("/get")
+  public List<OutcomeEntity> getLast() {
+    System.out.println(outcomeService.getLast());
+    return outcomeService.getLast();
+  }
 }

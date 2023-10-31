@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface LogistComponentRepository extends JpaRepository<LogistComponentEntity, Long> {
-    Optional<LogistComponentEntity> findByComponentIdAndLogistId(Long componentId, Long logistId);
+  Optional<LogistComponentEntity> findByComponentIdAndLogistId(Long componentId, Long logistId);
 }
