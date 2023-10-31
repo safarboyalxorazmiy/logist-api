@@ -51,6 +51,7 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/components/**").permitAll()
                 .requestMatchers("/logist/**").permitAll()
+                .requestMatchers("/master/**").permitAll()
 
                 /*.requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
