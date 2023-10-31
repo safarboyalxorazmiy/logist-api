@@ -47,8 +47,8 @@ public class LogistComponentService {
     return true;
   }
 
-  public List<LogistComponentInfoDTO> getNotVerifiedComponents() {
-    List<LogistComponentRequestEntity> byVerifiedFalse = logistComponentRequestRepository.findByVerifiedFalse();
+  public List<LogistComponentInfoDTO> getNotVerifiedComponents(Long logistId) {
+    List<LogistComponentRequestEntity> byVerifiedFalse = logistComponentRequestRepository.findByVerifiedFalseAndLogistId(logistId);
 
     List<LogistComponentInfoDTO> result = new ArrayList<>();
     for (LogistComponentRequestEntity logistComponent : byVerifiedFalse) {
@@ -56,6 +56,9 @@ public class LogistComponentService {
       dto.setId(logistComponent.getId());
       dto.setQuantity(logistComponent.getQuantity());
       dto.setComponentId(logistComponent.getComponentId());
+      dto.setComponentName(logistComponent.getComponent().getName());
+      dto.setComponentCode(logistComponent.getComponent().getCode());
+      dto.setComponentSpecs(logistComponent.getComponent().getSpecs());
       dto.setLogistId(logistComponent.getLogistId());
       result.add(dto);
     }
@@ -106,6 +109,23 @@ public class LogistComponentService {
       result.add(dto);
     }
 
+    return result;
+  }
+
+  public List<LogistComponentInfoDTO> getComponentsInfoByLogistId(Long logistId) {
+    List<LogistComponentEntity> all = logistComponentRepository.findByLogistId(logistId);
+    List<LogistComponentInfoDTO> result = new ArrayList<>();
+    for (LogistComponentEntity logistComponent : all) {
+      LogistComponentInfoDTO dto = new LogistComponentInfoDTO();
+      dto.setId(logistComponent.getId());
+      dto.setQuantity(logistComponent.getQuantity());
+      dto.setComponentId(logistComponent.getComponentId());
+      dto.setComponentName(logistComponent.getComponent().getName());
+      dto.setComponentCode(logistComponent.getComponent().getCode());
+      dto.setComponentSpecs(logistComponent.getComponent().getSpecs());
+      dto.setLogistId(logistComponent.getLogistId());
+      result.add(dto);
+    }
     return result;
   }
 }

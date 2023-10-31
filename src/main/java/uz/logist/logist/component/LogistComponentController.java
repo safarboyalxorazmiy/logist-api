@@ -1,6 +1,5 @@
 package uz.logist.logist.component;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,13 +22,14 @@ public class LogistComponentController {
   @PreAuthorize("permitAll()")
   @PostMapping("/component/submit")
   public ResponseEntity<Boolean> submitComponentRequest(@RequestBody LogistComponentRequestSumbitDTO dto) {
+    System.out.println(dto);
     Boolean result = logistComponentService.submitComponent(dto);
     return ResponseEntity.ok(result);
   }
 
   @GetMapping("/component/not/verified")
   public ResponseEntity<List<LogistComponentInfoDTO>> getNotVerifiedRequests() {
-    List<LogistComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents();
+    List<LogistComponentInfoDTO> result = logistComponentService.getNotVerifiedComponents(getLogistId());
     return ResponseEntity.ok(result);
   }
 
@@ -37,6 +37,13 @@ public class LogistComponentController {
   public ResponseEntity<Boolean> verifyRequest(@RequestParam Long requestId) {
     Boolean result = logistComponentService.verifyRequest(requestId);
     return ResponseEntity.ok(result);
+  }
+
+  @GetMapping("/component/info")
+  public ResponseEntity<List<LogistComponentInfoDTO>> getComponentsInfo() {
+    Long logistId = getLogistId();
+    List<LogistComponentInfoDTO> componentsInfo = logistComponentService.getComponentsInfoByLogistId(logistId);
+    return ResponseEntity.ok(componentsInfo);
   }
 
   @GetMapping("/get/info")
